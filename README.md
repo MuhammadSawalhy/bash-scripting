@@ -1,6 +1,6 @@
 # bash scripting + some techniques
 
-You can consider this repisitory as a bash cheatsheat, I am focusing on the main point and structure of the bash script. There are also some urls and resources to dive into.  
+You can consider this repository as a bash cheatsheet, I am focusing on the main point and structure of the bash script. There are also some urls and resources to dive into.  
 
 ## shebang
 
@@ -13,7 +13,10 @@ Here is another [article](https://ryanstutorials.net/bash-scripting-tutorial/bas
 
 Let's recap:
 
-It looks like a comment line at the file top most. There must not be spaces between `#`, `!` or the interpreter path, acording to Rayan. When you are lazy and you don't include it in your script, the default s set to the following:
+It looks like a comment line at the file top most. There must not be spaces between `#`, `!` or the interpreter path, according to Rayan. Also, when you are lazy and you don't put it in your script, the default is set to the current environment of the terminal. 
+> If you are at a terminal and running the Bash shell and you execute a script without a shebang then Bash will assume it is a Bash script.
+
+Example:
 ```bash
 #!/bin/bash
 echo "Peace upon you from bash!"
@@ -72,7 +75,8 @@ Resources: [basic-operators-in-shell-scripting](https://www.geeksforgeeks.org/ba
 
 ## Handling string
 
-### Echo multiple lines and type them nornmally as plain text:
+### Echo multiple lines and type them normally as plain text:
+
 ```
 echo << id
 your test 
@@ -80,7 +84,7 @@ is types here
 and another line here
 id
 ```
-
+<!-- 
 --------------
 ### 
 
@@ -90,17 +94,17 @@ id
 ###
 
 
---------------
+-------------- -->
 
 ## Standard input and output
 
 
 
-## For loop, if statments, case, while
+## For loop, if statements, case, while
 
 ### if statement
 
-  Tests used in logic expression:
+  Tests used in logic expressions:
   ```
   Operator			Description
   ! EXPRESSION			The EXPRESSION is false.
