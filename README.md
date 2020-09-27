@@ -16,7 +16,7 @@ It looks like a comment line at the file top most. There must not be spaces betw
 echo "Peace upon you from bash!"
 ```
 
-This is weird when you know that the shebabh line can be included in python and javascript files as an example:
+This is weird when you know that the shebang line can be included in python and javascript files as an example:
 ```bash
 #!/usr/bin/env node
 console.log('Peace upon you from javascript!');
@@ -69,7 +69,7 @@ Resources: [basic-operators-in-shell-scripting](https://www.geeksforgeeks.org/ba
 
 ## Handling string
 
-### Echo more one line and type them nornmally:
+### Echo multiple lines and type them nornmally as plain text:
 ```
 echo << id
 your test 
