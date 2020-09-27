@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# the json command here is an npm package
+#: here it is: https://www.npmjs.com/package/json
+
 echo 'Login using the terminal'
 
 read -p "Username: " username

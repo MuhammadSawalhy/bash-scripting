@@ -122,6 +122,7 @@ id
   -w FILE				FILE exists and the write permission is granted.
   -x FILE				FILE exists and the execute permission is granted.
   ```
+  
   for more about these tests used in logic expression type `info test`.
   
   -----------
@@ -192,10 +193,12 @@ esac
   done
   ```
 
-  You can use `break` statement to break if a specific condition statisfied:
+  You can use `break` statement to break if a specific condition statisfied, or `continue` to skip the following commands in the loop:
   ```bash
     for (( i=0; i<=10; i++ )); do
       if [ $i -eq 5 ]; then
+        continue
+      elif (( $i == 7 )); then
         break
       fi
       echo $i

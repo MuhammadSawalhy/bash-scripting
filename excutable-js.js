@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /usr/bin/env node 
 
 const args = process.argv;
 const nums = args.slice(2);
