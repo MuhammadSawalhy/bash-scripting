@@ -14,6 +14,7 @@ Here is another [article](https://ryanstutorials.net/bash-scripting-tutorial/bas
 Let's recap:
 
 It looks like a comment line at the file top most. There must not be spaces between `#`, `!` or the interpreter path, according to Rayan. Also, when you are lazy and you don't put it in your script, the default is set to the current environment of the terminal. 
+As said in the pre-mentioned [article](https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php) of articles series by [Rayan](https://ryanstutorials.net/)
 > If you are at a terminal and running the Bash shell and you execute a script without a shebang then Bash will assume it is a Bash script.
 
 Example:
@@ -133,7 +134,11 @@ id
     ```
   - math expressions
     ```bash
-    if (( math expressions )); then ...; fi
+    if (( math expressions ))
+      then echo "do command"
+    elif [ consdition ]; then 
+      echo "do command"
+    fi
     ```
 
 ### while, until
@@ -247,3 +252,12 @@ esac
   ❯ file /usr/local/bin/node
   /usr/local/bin/node: symbolic link to /home/ms/.nvm/versions/node/v12.18.3/bin/node
   ```
+
+
+# Authentication from terminal
+
+In the subdirectory `terminal-authentication`. You can find simple signup and login scripts, the signed-up users are saved locally, but you can you the command `curl` to communicate with a remote or local server and save your data in a secure place.
+
+# License
+
+MIT

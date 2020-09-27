@@ -21,8 +21,10 @@ echo ''
 echo 'saving data...'
 
 all_users=$([ -e ./users.json ] && cat users.json || echo '[]')
-if [ -z $all_users ]; then all_users='[]'; fi
+if [[ -z $all_users ]]; then all_users='[]'; fi
 count=$(echo $all_users | json length);
+
+
 
 all_users=$(echo $all_users | json -A -e "this[$count] = $data" > users.json) && 
 	echo "new user \"$username\" added!"

@@ -1,11 +1,11 @@
-#!/bin/bash
+#! /bin/bash
+
 # Shebang line
 
 # see: https://www.mylinuxplace.com/bash-special-variables/
 # see: https://ryanstutorials.net/bash-scripting-tutorial/bash-variables.php
 
 ####### special varaibles #######
-
 echo "$_"
 echo "\$_ at the beginning of the script represents the full path to the excutable file"
 echo "\$_ otherwise it represents the last command argument"
