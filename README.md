@@ -186,12 +186,10 @@ esac
    13 14 15 16 17 18 19  
    20 21 22 23 24 25 26  
    27 28 29 30           
-                        
 
    ~/Desktop/linux-meeting/terminal-authentication
    ❯ date "+%Y %b %d (%a) - %I:%M%p"
    2020 Sep 27 (Sun) - 12:02AM
-
    ```
 
 - awk
@@ -204,4 +202,16 @@ esac
     ps axch -o cmd,%mem --sort=-%mem |
     head -n $([ ! -z $1 ] && echo "$1" || echo 10)
   }
+  ```
+
+- link
+  To create a symbolic link:
+  ```bash
+  ❯ sudo ln -s  file_to_be_linked  the_symbolic_link_file
+  
+  #### for example ###########3
+  ❯ sudo ln -fs /home/ms/.nvm/versions/node/v12.18.3/bin/node /usr/local/bin/node
+
+  ❯ file /usr/local/bin/node
+  /usr/local/bin/node: symbolic link to /home/ms/.nvm/versions/node/v12.18.3/bin/node
   ```
