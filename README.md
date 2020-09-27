@@ -1,4 +1,26 @@
-# Linux tutorial - bash scripting, some techniques
+# bash scripting + some techniques
+
+You can consider this repisitory as a bash cheatsheat, I am focusing on the main point and structure of the bash script. There are also some urls and resources to dive into.  
+
+## shebang
+
+Here is [an article](https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php) of articles series by [Rayan](https://ryanstutorials.net/).
+
+--------------
+
+Let's recap:
+
+It looks like a comment line at the file top most. There must not be spaces between `#`, `!` or the interpreter path, acording to Rayan. When you are lazy and you don't include it in your script, the default s set to the following:
+```bash
+#!/bin/bash
+echo "Peace upon you from bash!"
+```
+
+This is weird when you know that the shebabh line can be included in python and javascript files as an example:
+```bash
+#!/usr/bin/env node
+console.log('Peace upon you from javascript!');
+```
 
 ## Variables
 

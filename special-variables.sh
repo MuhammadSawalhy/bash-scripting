@@ -8,7 +8,7 @@
 
 echo "$_"
 echo "\$_ at the beginning of the script represents the full path to the excutable file"
-echo "\$_ otherwise it represents the last command arguments"
+echo "\$_ otherwise it represents the last command argument"
 
 echo ""
 echo "-------------- command name"
