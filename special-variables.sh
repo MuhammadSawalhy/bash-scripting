@@ -31,6 +31,11 @@ echo \$@
 echo "$@"
 
 echo ""
+echo "-------------- all arguments"
+echo \$*
+echo "$*"
+
+echo ""
 echo "-------------- the process id 'pid'"
 echo \$\$
 echo "$$"
@@ -49,8 +54,4 @@ echo ""
 echo "-------------- get random integer"
 echo \$RANDOM
 echo  $RANDOM 
-
-echo ""
-echo "-------------- use the super doer"
-echo "\$_"
 

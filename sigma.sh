@@ -1,4 +1,4 @@
-#! bash
+#!/bin/bash
 
 
 ################## js #########################
@@ -9,18 +9,20 @@
 # console.log('the sum is: ', sum);
 
 ################## bash - first method #########################
-# sum=0
-# count=$#
-# for (( i=1; i<=count; i++ )); do
-#   num=$(echo $@ | awk "{print \$$i}")
-#   (( sum += num ));
-# done
-# echo $sum
+sum=0
+count="$#"
+
+for (( i=1; i<=count; i++ )); do
+  # num=$(echo "$@" | awk "{print \$$i}")
+  num="${!i}"
+  (( sum += num ));
+done
+echo $sum
 
 
 ################## bash - second method #########################
-sum=0
-for num in "$@"; do
-  (( sum += num ))
-done
-echo $sum
+# sum=0
+# for num in "$@"; do
+#   (( sum += num ))
+# done
+# echo $sum
