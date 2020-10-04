@@ -6,8 +6,8 @@ declare -i max_len=0
 # read texts from users
 while (true); do
    read -p "input text: " text
-   if [ "$text" = "quit" ]; then
-      break
+   if [ "$text" = "quit" ] || [ "$text" = "q" ]; then
+     break 
    fi
    text_array+=("$text")
 done
@@ -16,7 +16,7 @@ echo "we got your inputs!"
 echo
 
 # get the max length of all inputs 
-for t in ${text_array[@]}; do
+for t in "${text_array[@]}"; do
    t_len=${#t}
 
    max_len=$(test $t_len -gt $max_len && echo $t_len || echo $max_len)
@@ -64,6 +64,6 @@ print_str(){
 
 align=$([ ! -z $1 ] && echo $1 || echo "center")
 
-for t in ${text_array[@]}; do
+for t in "${text_array[@]}"; do
    print_str "$t" $align
 done
