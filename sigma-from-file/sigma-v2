@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sum=0
+
+while read num; do
+	(( sum+=num ))
+done < ./numbers.txt
+
+echo $sum
+
