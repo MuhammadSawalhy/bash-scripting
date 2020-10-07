@@ -36,9 +36,9 @@ console.log('Peace upon you from javascript!');
 
 ### Spacial variables
 
- - $? :  
+ - $? : the exit code of the last performed command 
  - \$$ : represents process id (pid)
- - $@ : all arguments 
+ - $@ : all arguments
  - $# : arguments count 
  - $0 : the program running this script 
  - $1 : the first argument, or null
@@ -51,6 +51,8 @@ console.log('Peace upon you from javascript!');
 Resources: [basic-operators-in-shell-scripting](https://www.geeksforgeeks.org/basic-operators-in-shell-scripting/)
 
 ### Arithmetic operations
+
+You can find most of these operators by this command: `info expr`.
 
 - add: `$num1 + $num2` or `$num1 += $num2`
 - subtract: `$num1 - $num2` or or `$num1 -= $num2`
@@ -66,36 +68,17 @@ Resources: [basic-operators-in-shell-scripting](https://www.geeksforgeeks.org/ba
 
 ### logic operators
 
+You can find these operators by this command: `info test`.
+
 - `!($true)`
 - `STRING = STRING`
 - `STRING != STRING`
 - `INTEGER1 -eq INTEGER2`
 - `INTEGER1 -gt INTEGER2`
 - `INTEGER1 -lt INTEGER2`
-
-
-## Handling string
-
-### Echo multiple lines and type them normally as plain text:
-
-```
-echo << id
-your test 
-is types here
-and another line here
-id
-```
-<!-- 
---------------
-### 
-
-
---------------
-
-###
-
-
--------------- -->
+- `INTEGER1 = INTEGER2`
+- `INTEGER1 \> INTEGER2`
+- `INTEGER1 \< INTEGER2`
 
 ## Standard input and output
 
@@ -105,34 +88,34 @@ id
 
 ### if statement
 
-  Tests used in logic expressions:
+Tests used in logic expressions:
+```
+Operator			Description
+! EXPRESSION			The EXPRESSION is false.
+-n STRING			The length of STRING is greater than zero.
+-z STRING			The lengh of STRING is zero (ie it is empty).
+STRING1 = STRING2		STRING1 is equal to STRING2
+STRING1 != STRING2		STRING1 is not equal to STRING2
+INTEGER1 -eq INTEGER2		INTEGER1 is numerically equal to INTEGER2
+INTEGER1 -gt INTEGER2		INTEGER1 is numerically greater than INTEGER2
+INTEGER1 -lt INTEGER2		INTEGER1 is numerically less than INTEGER2
+-d FILE				FILE exists and is a directory.
+-e FILE				FILE exists.
+-r FILE				FILE exists and the read permission is granted.
+-s FILE				FILE exists and it's size is greater than zero (ie. it is not empty).
+-w FILE				FILE exists and the write permission is granted.
+-x FILE				FILE exists and the execute permission is granted.
+```
+
+for more about these tests used in logic expression type `info test`.
+
+----------
+You can type conditions as:
+- logic experssions
+  ```bash
+  if [ condition ]; then ...; fi
   ```
-  Operator			Description
-  ! EXPRESSION			The EXPRESSION is false.
-  -n STRING			The length of STRING is greater than zero.
-  -z STRING			The lengh of STRING is zero (ie it is empty).
-  STRING1 = STRING2		STRING1 is equal to STRING2
-  STRING1 != STRING2		STRING1 is not equal to STRING2
-  INTEGER1 -eq INTEGER2		INTEGER1 is numerically equal to INTEGER2
-  INTEGER1 -gt INTEGER2		INTEGER1 is numerically greater than INTEGER2
-  INTEGER1 -lt INTEGER2		INTEGER1 is numerically less than INTEGER2
-  -d FILE				FILE exists and is a directory.
-  -e FILE				FILE exists.
-  -r FILE				FILE exists and the read permission is granted.
-  -s FILE				FILE exists and it's size is greater than zero (ie. it is not empty).
-  -w FILE				FILE exists and the write permission is granted.
-  -x FILE				FILE exists and the execute permission is granted.
-  ```
-  
-  for more about these tests used in logic expression type `info test`.
-  
-  -----------
-  You can type conditions as:
-  - logic experssions
-    ```bash
-    if [ condition ]; then ...; fi
-    ```
-  - math expressions
+- math expressions
     ```bash
     if (( math expressions ))
       then echo "do command"
@@ -140,43 +123,6 @@ id
       echo "do command"
     fi
     ```
-
-### while, until
-
-You can you a logical or math expression:
-```bash
-while (condition is true); do
-  # commands ...
-done
-```
-
-The same structure for `until`:
-```bash
-until (condition becomes true); do
-  # commands ...
-done
-```
-
-Example:
-![while loop](./while-image.png)
-
-### case
-
-```bash
-case $1 in
-  first_choice)
-    # command
-    ;;
-  second_choice)
-    # command
-    ;;
-  *)
-    # Default logic
-    echo $"Usage: $0 {start|stop}"
-    exit 1
-    ;;
-esac
-```
 
 ### for loop
 
@@ -210,7 +156,60 @@ esac
     done
   ```
 
-## cal, date, awk, grep, sed, tee, sensors, free, ps
+### while, until
+
+You can you a logical or math expression:
+```bash
+while (condition is true); do
+  # commands ...
+done
+```
+
+The same structure for `until`:
+```bash
+until (condition becomes true); do
+  # commands ...
+done
+```
+
+Example:
+
+![while loop](./while-image.png)
+
+### case
+
+This is an alternative to `if elif elif else fi`
+```bash
+case $1 in
+  first_choice)
+    # command
+    ;;
+  second_choice)
+    # command
+    ;;
+  *)
+    # Default logic
+    echo $"Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+```
+
+### select
+
+To make the script user choose from a menu.
+```bash
+select user_choice in first_choice 2nd_choice 3rd_choice; do
+  echo $user_choice
+done
+```
+
+
+## Useful commands
+
+You should take a look at these commands, you nearly will use them frequently.
+
+> cal, date, awk, grep, sed, tee, tr, printf, expr, test, sensors, free, ps, pgrep, pkill, curl, wget, xclip, youtube-dl
 
 - cal, data
    ```bash
@@ -243,6 +242,7 @@ esac
 
 - link
   To create a symbolic link:
+
   ```bash
   ❯ sudo ln -s  file_to_be_linked  the_symbolic_link_file
   
@@ -252,6 +252,8 @@ esac
   ❯ file /usr/local/bin/node
   /usr/local/bin/node: symbolic link to /home/ms/.nvm/versions/node/v12.18.3/bin/node
   ```
+
+  Note that the path to the linked file has to be in the PATH variable
 
 
 # Authentication from terminal
