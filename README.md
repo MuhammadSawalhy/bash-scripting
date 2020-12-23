@@ -137,7 +137,7 @@ You can type conditions as:
   done
   ```
 
-- For loop can do such as in javascript, java, and C#:
+- For loop can do such as in javascript, java, and C#, etc:
   ```bash
   for (( i=0; i<=10; i++ )); do
     echo $i
@@ -149,7 +149,7 @@ You can type conditions as:
     for (( i=0; i<=10; i++ )); do
       if [ $i -eq 5 ]; then
         continue
-      elif (( $i == 7 )); then
+      elif (( i == 7 )); then
         break
       fi
       echo $i
