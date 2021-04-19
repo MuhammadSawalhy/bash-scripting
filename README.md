@@ -20,13 +20,13 @@ As said in the pre-mentioned [article](https://ryanstutorials.net/bash-scripting
 Example:
 ```bash
 #!/bin/bash
-echo "Peace upon you from bash!"
+echo "As-salamu alaykum"
 ```
 
 This is weird when you know that the shebang line can be included in python and javascript files as an example:
 ```bash
 #!/usr/bin/env node
-console.log('Peace upon you from javascript!');
+console.log('As-salamu alaykum from javascript!');
 ```
 
 ## Variables
