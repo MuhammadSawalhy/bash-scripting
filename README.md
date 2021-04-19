@@ -154,7 +154,14 @@ You can type conditions as:
 
 - For loop can do such as in javascript, java, and C#, etc:
   ```bash
-  for (( i=0; i<=10; i++ )); do
+  for (( i=1; i<=10; i++ )); do
+    echo $i
+  done
+  ```
+
+  An alternative to te previous code:
+  ```bash
+  for $i in `seq 10`; do
     echo $i
   done
   ```
