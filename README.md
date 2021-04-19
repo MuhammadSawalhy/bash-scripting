@@ -107,22 +107,37 @@ INTEGER1 -lt INTEGER2		INTEGER1 is numerically less than INTEGER2
 -x FILE				FILE exists and the execute permission is granted.
 ```
 
-for more about these tests used in logic expression type `info test`.
+for more about these tests used in logic expression type `info test` or `man test`.
 
 ----------
 You can type conditions as:
 - logic experssions
   ```bash
   if [ condition ]; then ...; fi
+  if [ 1 -gt 2 ]; then ...; fi
+  if [ 1 > 2 ]; then ...; fi
+  if [ 1 = 2 ]; then ...; fi
   ```
 - math expressions
-    ```bash
-    if (( math expressions ))
-      then echo "do command"
-    elif [ consdition ]; then 
-      echo "do command"
-    fi
-    ```
+  ```bash
+  if (( math expressions ))
+    then echo "do command"
+  elif [ consdition ]; then 
+    echo "do command"
+  fi
+  ```
+ - command
+   Actually, we can consider logic expressions and math epxressions as command, when the command exits with 0 "succeeded", the condition is satisfied, if it exits with any thing else "failed", if will proceed to `else` and `elif` if founded.
+   ```bash
+   > (( 0 )) # exit with 1
+   > if (( 0 )); then echo true; else echo false; fi
+   false
+   > [ 0 ] # exit with zero
+   > if [ 0 ]; then echo true; else echo false; fi
+   true
+   > test 0 -leq 1 # exit with 0
+   > if test 0 -leq 1; then ...; else ...; fi
+   ```
 
 ### for loop
 
