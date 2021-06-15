@@ -114,9 +114,10 @@ You can type conditions as:
 - logic experssions
   ```bash
   if [ condition ]; then ...; fi
-  if [ 1 -gt 2 ]; then ...; fi
-  if [ 1 > 2 ]; then ...; fi
   if [ 1 = 2 ]; then ...; fi
+  if [[ 1 -gt 2 ]]; then ...; fi
+  if [[ 1 > 2 && (... || ... && ...) ]]; then ...; fi
+  if [[ "$foo" = a* ]]; then ...; fi # checks patterns
   ```
 - math expressions
   ```bash
@@ -127,17 +128,17 @@ You can type conditions as:
   fi
   ```
  - command
-   Actually, we can consider logic expressions and math epxressions as command, when the command exits with 0 "succeeded", the condition is satisfied, if it exits with any thing else "failed", if will proceed to `else` and `elif` if founded.
+   Actually, we can consider logic expressions `[ ... ]` and math epxressions as commands, when the command exits with 0 "succeeded", the condition is satisfied, if it exits with any thing else "failed", if will proceed to `else` and `elif` if founded.
    ```bash
-   > (( 0 )) # exit with 1
-   > if (( 0 )); then echo true; else echo false; fi
-   false
-   > [ 0 ] # exit with zero
-   > if [ 0 ]; then echo true; else echo false; fi
-   true
-   > test 0 -leq 1 # exit with 0
-   > if test 0 -leq 1; then ...; else ...; fi
+   > if (( 0 )); then echo true; else echo false; fi         # false
+   > if [ 0 ]; then echo true; else echo false; fi           # true
+   > if [ ]; then echo true; else echo false; fi             # false
+   > test 0 -leq 1; echo $?                                  # 0
+   > if test 0 -leq 1; then echo true; else echo false; fi   # true
    ```
+   
+   > Exit status of `test`: **0** if the expression is true, **1** if the expression is false, **2** if an error occurred.
+
 
 ### for loop
 
