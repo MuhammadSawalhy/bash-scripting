@@ -148,13 +148,9 @@ You can type conditions as:
 
 - For loop statement does throw an array or list of values, the same perception as for loop in python:
   ```bash
-  for var_name in {start..end}; do
-    
-  done
-  ### or ############333
-  for var_name in {start..end..increment}; do
-    
-  done
+  for var_name in {start..end}; do; done
+  ### or ###
+  for var_name in {start..end..increment}; do; done
   ```
 
 - For loop can do such as in javascript, java, and C#, etc:
