@@ -115,6 +115,10 @@ You can type conditions as:
   ```bash
   if [ condition ]; then ...; fi
   if [ 1 = 2 ]; then ...; fi
+  if [ 1 == 2 ]; then ...; fi # invalid syntax
+  if [1 = 2 ]; then ...; fi   # invalid syntax
+  if [ 1=2 ]; then ...; fi    # invalid syntax
+  if [ condition1 ] && { [ condition2 ] || [ condition3 ]; }; then ...; fi
   if [[ 1 -gt 2 ]]; then ...; fi
   if [[ 1 > 2 && (... || ... && ...) ]]; then ...; fi
   if [[ "$foo" = a* ]]; then ...; fi # checks patterns
