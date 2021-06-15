@@ -137,8 +137,10 @@ You can type conditions as:
    > if (( 0 )); then echo true; else echo false; fi         # false
    > if [ 0 ]; then echo true; else echo false; fi           # true
    > if [ ]; then echo true; else echo false; fi             # false
-   > test 0 -leq 1; echo $?                                  # 0
-   > if test 0 -leq 1; then echo true; else echo false; fi   # true
+   > test 0 -leq 1; echo $?                                  # 2
+   > if test 0 -leq 1; then echo true; else echo false; fi   # false
+   > test 0 -le 1; echo $?                                   # 0
+   > if test 0 -le 1; then echo true; else echo false; fi    # true
    ```
    
    > Exit status of `test`: **0** if the expression is true, **1** if the expression is false, **2** if an error occurred.
