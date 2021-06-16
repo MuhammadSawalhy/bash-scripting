@@ -1,6 +1,34 @@
 # Bash Scripting, intro to bash
 
-You can consider this repository as a bash cheatsheet, I am focusing on the main points and basic syntax of the bash. There are also some urls and resources for deep diving.  
+You can consider this repository as a bash cheatsheet, I am focusing on the main points and basic syntax of the bash. There are also some urls and resources for deep diving.
+
+Table of Contents
+=================
+
+   * [Bash Scripting, intro to bash](#bash-scripting-intro-to-bash)
+      * [Shebang](#shebang)
+      * [Variables](#variables)
+         * [Spacial variables](#spacial-variables)
+         * [Varaible expansion](#varaible-expansion)
+      * [Operators](#operators)
+         * [Arithmetic operations](#arithmetic-operations)
+         * [logic operators](#logic-operators)
+      * [Standard input and output](#standard-input-and-output)
+      * [If statement](#if-statement)
+         * [Tests and logic expressions, info test or man test.](#tests-and-logic-expressions-info-test-or-man-test)
+         * [Math expressions](#math-expressions)
+      * [For loop](#for-loop)
+      * [While &amp; Until](#while--until)
+      * [Case statement](#case-statement)
+      * [Select statement](#select-statement)
+      * [Useful commands](#useful-commands)
+         * [cal, data](#cal-data)
+         * [awk](#awk)
+         * [memory details, 'ps axch -o cmd,%mem'](#memory-details-ps-axch--o-cmdmem)
+         * [ln, to create a symbolic links](#ln-to-create-a-symbolic-links)
+      * [Authentication from terminal](#authentication-from-terminal)
+      * [License](#license)
+
 
 ## Shebang
 
@@ -184,7 +212,7 @@ for var_name in {start..end..increment}; do; done
 ```bash
 for (( i=1; i<=10; i++ )); do echo $i; done
 ```
-  
+
 - An alternative to the previous code:
 
 ```bash
@@ -311,10 +339,10 @@ memusage() {
 /usr/local/bin/node: symbolic link to /home/ms/.nvm/versions/node/v12.18.3/bin/node
 ```
 
-# Authentication from terminal
+## Authentication from terminal
 
 In the subdirectory `terminal-authentication`. You can find simple sign up and login scripts, the signed-up users are saved locally, but you can you the command `curl` to communicate with a remote or local server and save your data in a secure place.
 
-# License
+## License
 
 MIT
