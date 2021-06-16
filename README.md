@@ -46,6 +46,14 @@ console.log('As-salamu alaykum from javascript!');
  - $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
  - $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
 
+### Varaible expansion
+
+Useful resources:
+- Bash variable expansion: https://www.youtube.com/watch?v=yTijxqjZhRo
+- Shell parameter expansion: https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion
+
+
+
 ## Operators
 
 Resources: [basic-operators-in-shell-scripting](https://www.geeksforgeeks.org/basic-operators-in-shell-scripting/)
