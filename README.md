@@ -2,21 +2,27 @@
 
 You can consider this repository as a bash cheatsheet, I am focusing on the main points and basic syntax of the bash. There are also some urls and resources for deep diving.
 
-Table of Contents
-=================
+## Table of Content
 
+<!--ts-->
    * [Bash Scripting, intro to bash](#bash-scripting-intro-to-bash)
+      * [Table of Content](#table-of-content)
       * [Shebang](#shebang)
       * [Variables](#variables)
          * [Spacial variables](#spacial-variables)
          * [Varaible expansion](#varaible-expansion)
       * [Operators](#operators)
          * [Arithmetic operations](#arithmetic-operations)
-         * [logic operators](#logic-operators)
-      * [Standard input and output](#standard-input-and-output)
+         * [Logic operators](#logic-operators)
+      * [Standard input and output, STDIN, STDOUT, STDERR](#standard-input-and-output-stdin-stdout-stderr)
+         * [Chain commands, pipe](#chain-commands-pipe)
+         * [Redirect from a channel to another](#redirect-from-a-channel-to-another)
+         * [Piping and redirecting with your own script file](#piping-and-redirecting-with-your-own-script-file)
+      * [Different types of brackets in bash](#different-types-of-brackets-in-bash)
       * [If statement](#if-statement)
          * [Tests and logic expressions, info test or man test.](#tests-and-logic-expressions-info-test-or-man-test)
          * [Math expressions](#math-expressions)
+         * [command](#command)
       * [For loop](#for-loop)
       * [While &amp; Until](#while--until)
       * [Case statement](#case-statement)
@@ -29,6 +35,9 @@ Table of Contents
       * [Authentication from terminal](#authentication-from-terminal)
       * [License](#license)
 
+<!-- Added by: ms, at: Wed Jun 16 12:43:57 AM UTC 2021 -->
+
+<!--te-->
 
 ## Shebang
 
@@ -114,7 +123,7 @@ You can find most of these operators by this command: `info expr`.
   Using `let` to do computations: [click here](https://www.computerhope.com/unix/bash/let.htm)
 
 
-### logic operators
+### Logic operators
 
 You can find these operators by this command: `info test`.
 
@@ -128,7 +137,82 @@ You can find these operators by this command: `info test`.
 - `INTEGER1 \> INTEGER2`
 - `INTEGER1 \< INTEGER2`
 
-## Standard input and output
+## Standard input and output, STDIN, STDOUT, STDERR
+
+### Chain commands, pipe
+
+```bash
+command='echo text | cat | sed s/text/another\ text/'
+eval $command
+```
+
+### Redirect from a channel to another
+
+```bash
+eval $command > file       # redirect STDOUT --to--> ./file
+eval $command >&2          # redirect STDOUT --to--> STDERR
+eval $command 1>&2         # redirect STDOUT --to--> STDERR
+eval $command >&2 > ./file # redirect STDOUT --to--> STDERR, and ./file
+eval $command 2> /dev/null # redirect STDOUT --to--> /dev/null
+eval $command >& /dev/null # redirect STDOUT, and STDERR --to--> /dev/null
+```
+
+### Piping and redirecting with your own script file
+
+Some valuable answers to a question on stackoverflow, [How to detect if my shell script is running through a pipe?](https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe).
+
+You can put the following code in a file, e.g. `./handling-STDs`, then try something like `echo text | ./handling-STDs 1 > ./file`, `./handling-STDs 1 < ./file`, ...
+
+```bash
+#!/bin/bash
+
+if [ "$1" = '1' ]; then
+
+  echo -----------------------------
+  if [ -t 0 ]
+  then echo 'no input, it is the teminal'
+  else echo "there is a source of input"; fi
+  echo -----------------------------
+  if [ -t 1 ]
+  then echo 'STDOUT to the terminal'
+  else echo "STDOUT *NOT* to the terminal"; fi
+  echo -----------------------------
+  if [ -t 2 ]
+  then echo 'STDERR to the terminal'
+  else echo "STDERR *NOT* to the terminal"; fi
+  echo -----------------------------
+
+elif [ "$1" = '2' ]; then
+
+  echo -----------------------------
+  [[ -t 0 ]] && \
+      echo 'STDIN is attached to TTY'
+  [[ -p /dev/stdin ]] && \
+      echo 'STDIN is attached to a pipe'
+  [[ ! -t 0 && ! -p /dev/stdin ]] && \
+      echo 'STDIN is attached to a redirection'
+  echo -----------------------------
+  [[ -t 1 ]] && \
+      echo 'STDOUT is attached to TTY'
+  [[ -p /dev/stdout ]] && \
+      echo 'STDOUT is attached to a pipe'
+  [[ ! -t 1 && ! -p /dev/stdout ]] && \
+      echo 'STDOUT is attached to a redirection'
+  echo -----------------------------
+  [[ -t 2 ]] && \
+      echo 'STDERR is attached to TTY'
+  [[ -p /dev/stderr ]] && \
+      echo 'STDERR is attached to a pipe'
+  [[ ! -t 2 && ! -p /dev/stderr ]] && \
+      echo 'STDERR is attached to a redirection'
+  echo -----------------------------
+
+fi
+```
+
+## Different types of brackets in bash
+
+https://stackoverflow.com/questions/6270440/simple-logical-operators-in-bash/6270803#6270803
 
 ## If statement
 
@@ -170,6 +254,10 @@ if [[ 1 > 2 && (... || ... && ...) ]]; then ...; fi
 if [[ "$foo" = a* ]]; then ...; fi # checks patterns
 ```
 
+---
+
+Here is a question on stackoverflow: [Multiple logical operators, ((A || B) && C), and “syntax error near unexpected token"](https://unix.stackexchange.com/questions/290146/multiple-logical-operators-a-b-c-and-syntax-error-near-unexpected-t).
+
 ### Math expressions
 
 ```bash
@@ -180,7 +268,7 @@ elif [ consdition ]; then
 fi
 ```
 
- - command
+ ### command
 
 Actually, we can consider logic expressions `[ ... ]` and math epxressions as commands, when the command exits with 0 "succeeded", the condition is satisfied, if it exits with any thing else "failed", if will proceed to `else` and `elif` if founded.
 
