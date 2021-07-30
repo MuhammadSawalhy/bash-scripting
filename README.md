@@ -1,39 +1,40 @@
-# Bash Scripting, intro to bash
+## Bash Scripting, intro to bash
 
 You can consider this repository as a bash cheatsheet, I am focusing on the main points and basic syntax of the bash. There are also some urls and resources for deep diving.
 
 ## Table of Content
 
 <!--ts-->
-   * [Bash Scripting, intro to bash](#bash-scripting-intro-to-bash)
-      * [Table of Content](#table-of-content)
-      * [Shebang](#shebang)
-      * [Variables](#variables)
-         * [Spacial variables](#spacial-variables)
-         * [Varaible expansion](#varaible-expansion)
-      * [Operators](#operators)
-         * [Arithmetic operations](#arithmetic-operations)
-         * [Logic operators](#logic-operators)
-      * [Standard input and output, STDIN, STDOUT, STDERR](#standard-input-and-output-stdin-stdout-stderr)
-         * [Chain commands, pipe](#chain-commands-pipe)
-         * [Redirect from a channel to another](#redirect-from-a-channel-to-another)
-         * [Piping and redirecting with your own script file](#piping-and-redirecting-with-your-own-script-file)
-      * [Different types of brackets in bash](#different-types-of-brackets-in-bash)
-      * [If statement](#if-statement)
-         * [Tests and logic expressions, info test or man test.](#tests-and-logic-expressions-info-test-or-man-test)
-         * [Math expressions](#math-expressions)
-         * [command](#command)
-      * [For loop](#for-loop)
-      * [While &amp; Until](#while--until)
-      * [Case statement](#case-statement)
-      * [Select statement](#select-statement)
-      * [Useful commands](#useful-commands)
-         * [cal, data](#cal-data)
-         * [awk](#awk)
-         * [memory details, 'ps axch -o cmd,%mem'](#memory-details-ps-axch--o-cmdmem)
-         * [ln, to create a symbolic links](#ln-to-create-a-symbolic-links)
-      * [Authentication from terminal](#authentication-from-terminal)
-      * [License](#license)
+
+- [Bash Scripting, intro to bash](#bash-scripting-intro-to-bash)
+- [Table of Content](#table-of-content)
+- [Shebang](#shebang)
+- [Variables](#variables)
+  - [Spacial variables](#spacial-variables)
+  - [Varaible expansion](#varaible-expansion)
+- [Operators](#operators)
+  - [Arithmetic operations](#arithmetic-operations)
+  - [Logic operators](#logic-operators)
+- [Standard input and output, STDIN, STDOUT, STDERR](#standard-input-and-output-stdin-stdout-stderr)
+  - [Chain commands, pipe](#chain-commands-pipe)
+  - [Redirect from a channel to another](#redirect-from-a-channel-to-another)
+  - [Piping and redirecting with your own script file](#piping-and-redirecting-with-your-own-script-file)
+- [Different types of brackets in bash](#different-types-of-brackets-in-bash)
+- [If statement](#if-statement)
+  - [Tests and logic expressions, info test or man test.](#tests-and-logic-expressions-info-test-or-man-test)
+  - [Math expressions](#math-expressions)
+  - [command](#command)
+- [For loop](#for-loop)
+- [While &amp; Until](#while--until)
+- [Case statement](#case-statement)
+- [Select statement](#select-statement)
+- [Useful commands](#useful-commands)
+  - [cal, data](#cal-data)
+  - [awk](#awk)
+  - [memory details, 'ps axch -o cmd,%mem'](#memory-details-ps-axch--o-cmdmem)
+  - [ln, to create a symbolic links](#ln-to-create-a-symbolic-links)
+- [Authentication from terminal](#authentication-from-terminal)
+- [License](#license)
 
 <!-- Added by: ms, at: Wed Jun 16 12:43:57 AM UTC 2021 -->
 
@@ -47,11 +48,11 @@ A quotation from an amazing [article](https://medium.com/@codingmaths/bin-bash-w
 
 Here is another [article](https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php) of articles series by [Rayan](https://ryanstutorials.net/).
 
---------------
+---
 
 Let's recap:
 
-It looks like a comment line at the file top most. There must not be spaces between `#`, `!` or the interpreter path, according to Rayan. Also, when you are lazy and you don't put it in your script, the default is set to the current environment of the terminal. 
+It looks like a comment line at the file top most. There must not be spaces between `#`, `!` or the interpreter path, according to Rayan. Also, when you are lazy and you don't put it in your script, the default is set to the current environment of the terminal.
 As said in the pre-mentioned [article](https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php) of articles series by [Rayan](https://ryanstutorials.net/)
 
 > If you are at a terminal and running the Bash shell and you execute a script without a shebang then Bash will assume it is a Bash script.
@@ -74,22 +75,22 @@ console.log('As-salamu alaykum from javascript!');
 
 `declare` expression: https://www.computerhope.com/unix/bash/declare.htm
 
-
 ### Spacial variables
 
- - $? : the exit code of the last performed command 
- - \$$ : represents process id (pid)
- - $@ : all arguments
- - $# : arguments count 
- - $0 : the program running this script 
- - $1 : the first argument, or null
- - $LINENO : the line number where the \$LINENO is used
- - $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
- - $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
+- $? : the exit code of the last performed command
+- \$$ : represents process id (pid)
+- $@ : all arguments
+- $# : arguments count
+- $0 : the program running this script
+- $1 : the first argument, or null
+- $LINENO : the line number where the \$LINENO is used
+- $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
+- $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
 
 ### Varaible expansion
 
 Useful resources:
+
 - Bash variable expansion: https://www.youtube.com/watch?v=yTijxqjZhRo
 - Shell parameter expansion: https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion
 
@@ -121,7 +122,6 @@ You can find most of these operators by this command: `info expr`.
 - Uniary operator, decrease: `$num1--` or or `--$num1`
 
   Using `let` to do computations: [click here](https://www.computerhope.com/unix/bash/let.htm)
-
 
 ### Logic operators
 
@@ -161,53 +161,71 @@ eval $command >& /dev/null # redirect both STDOUT and STDERR --to--> /dev/null
 
 Some valuable answers to a question on stackoverflow, [How to detect if my shell script is running through a pipe?](https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe).
 
-You can put the following code in a file, e.g. `./handling-STDs`, then try something like `echo text | ./handling-STDs 1 > ./file`, `./handling-STDs 1 < ./file`, ...
+You can put the following code in a file, e.g. `./handling-STDs`, then try something like `echo text | ./handling-STDs 1 > ./file`, `./handling-STDs 1 < ./file`, etc...
+
+<details>
+    <summary>Click to see all cases, <b>./handling-STDs</b></summary>
+    ```bash
+    #!/bin/bash
+    
+    if [ "$1" = '1' ]; then
+    
+      echo -----------------------------
+      if [ -t 0 ]
+      then echo 'no input, it is the teminal'
+      else echo "there is a source of input"; fi
+      echo -----------------------------
+      if [ -t 1 ]
+      then echo 'STDOUT to the terminal'
+      else echo "STDOUT *NOT* to the terminal"; fi
+      echo -----------------------------
+      if [ -t 2 ]
+      then echo 'STDERR to the terminal'
+      else echo "STDERR *NOT* to the terminal"; fi
+      echo -----------------------------
+    
+    elif [ "$1" = '2' ]; then
+    
+      echo -----------------------------
+      [[ -t 0 ]] && \
+          echo 'STDIN is attached to TTY'
+      [[ -p /dev/stdin ]] && \
+          echo 'STDIN is attached to a pipe'
+      [[ ! -t 0 && ! -p /dev/stdin ]] && \
+          echo 'STDIN is attached to a redirection'
+      echo -----------------------------
+      [[ -t 1 ]] && \
+          echo 'STDOUT is attached to TTY'
+      [[ -p /dev/stdout ]] && \
+          echo 'STDOUT is attached to a pipe'
+      [[ ! -t 1 && ! -p /dev/stdout ]] && \
+          echo 'STDOUT is attached to a redirection'
+      echo -----------------------------
+      [[ -t 2 ]] && \
+          echo 'STDERR is attached to TTY'
+      [[ -p /dev/stderr ]] && \
+          echo 'STDERR is attached to a pipe'
+      [[ ! -t 2 && ! -p /dev/stderr ]] && \
+          echo 'STDERR is attached to a redirection'
+      echo -----------------------------
+    
+    fi
+    ```
+</details>
+
+For example you can do something like this:
 
 ```bash
-#!/bin/bash
-
-if [ "$1" = '1' ]; then
-
-  echo -----------------------------
-  if [ -t 0 ]
-  then echo 'no input, it is the teminal'
-  else echo "there is a source of input"; fi
-  echo -----------------------------
-  if [ -t 1 ]
-  then echo 'STDOUT to the terminal'
-  else echo "STDOUT *NOT* to the terminal"; fi
-  echo -----------------------------
-  if [ -t 2 ]
-  then echo 'STDERR to the terminal'
-  else echo "STDERR *NOT* to the terminal"; fi
-  echo -----------------------------
-
-elif [ "$1" = '2' ]; then
-
-  echo -----------------------------
-  [[ -t 0 ]] && \
-      echo 'STDIN is attached to TTY'
-  [[ -p /dev/stdin ]] && \
-      echo 'STDIN is attached to a pipe'
-  [[ ! -t 0 && ! -p /dev/stdin ]] && \
-      echo 'STDIN is attached to a redirection'
-  echo -----------------------------
-  [[ -t 1 ]] && \
-      echo 'STDOUT is attached to TTY'
-  [[ -p /dev/stdout ]] && \
-      echo 'STDOUT is attached to a pipe'
-  [[ ! -t 1 && ! -p /dev/stdout ]] && \
-      echo 'STDOUT is attached to a redirection'
-  echo -----------------------------
-  [[ -t 2 ]] && \
-      echo 'STDERR is attached to TTY'
-  [[ -p /dev/stderr ]] && \
-      echo 'STDERR is attached to a pipe'
-  [[ ! -t 2 && ! -p /dev/stderr ]] && \
-      echo 'STDERR is attached to a redirection'
-  echo -----------------------------
-
+#!/usr/bin/env bash
+if [ -t 0 ]; then
+  >&2 echo error: no input is provided, STDIN channel is attached to the tty, your terminal
+  exit 1
 fi
+
+my_content="$(cat)"
+echo "I received some data:"
+echo "-----------------------------------"
+echo "$my_content"
 ```
 
 ## Different types of brackets in bash
@@ -263,12 +281,12 @@ Here is a question on stackoverflow: [Multiple logical operators, ((A || B) && C
 ```bash
 if (( math expressions ))
 	then echo "do command"
-elif [ consdition ]; then 
+elif [ consdition ]; then
 	echo "do command"
 fi
 ```
 
- ### command
+### command
 
 Actually, we can consider logic expressions `[ ... ]` and math epxressions as commands, when the command exits with 0 "succeeded", the condition is satisfied, if it exits with any thing else "failed", if will proceed to `else` and `elif` if founded.
 
@@ -282,8 +300,7 @@ test 0 -le 1; echo $?                                   # 0
 if test 0 -le 1; then echo true; else echo false; fi    # true
 ```
 
-   > Exit status of `test`: **0** if the expression is true, **1** if the expression is false, **2** if an error occurred.
-
+> Exit status of `test`: **0** if the expression is true, **1** if the expression is false, **2** if an error occurred.
 
 ## For loop
 
@@ -376,7 +393,6 @@ select user_choice in first_choice 2nd_choice 3rd_choice; do
 done
 ```
 
-
 ## Useful commands
 
 You should take a look at these commands, you nearly will use them frequently.
@@ -388,13 +404,13 @@ You should take a look at these commands, you nearly will use them frequently.
 ```bash
 ~/Desktop/linux-meeting/terminal-authentication
 ❯ cal
-September 2020     
-Su Mo Tu We Th Fr Sa  
-1  2  3  4  5  
-6  7  8  9 10 11 12  
-13 14 15 16 17 18 19  
-20 21 22 23 24 25 26  
-27 28 29 30           
+September 2020
+Su Mo Tu We Th Fr Sa
+1  2  3  4  5
+6  7  8  9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30
 
 ~/Desktop/linux-meeting/terminal-authentication
 ❯ date "+%Y %b %d (%a) - %I:%M%p"
