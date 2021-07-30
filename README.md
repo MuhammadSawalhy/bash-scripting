@@ -152,9 +152,9 @@ eval $command
 eval $command > file       # redirect STDOUT --to--> ./file
 eval $command >&2          # redirect STDOUT --to--> STDERR
 eval $command 1>&2         # redirect STDOUT --to--> STDERR
-eval $command >&2 > ./file # redirect STDOUT --to--> STDERR, and ./file
-eval $command 2> /dev/null # redirect STDOUT --to--> /dev/null
-eval $command >& /dev/null # redirect STDOUT, and STDERR --to--> /dev/null
+eval $command >&2 > ./file # redirect STDOUT --to--> both STDERR and ./file
+eval $command 2> /dev/null # redirect STDERR --to--> /dev/null
+eval $command >& /dev/null # redirect both STDOUT and STDERR --to--> /dev/null
 ```
 
 ### Piping and redirecting with your own script file
