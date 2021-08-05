@@ -170,53 +170,55 @@ Some valuable answers to a question on stackoverflow, [How to detect if my shell
 You can put the following code in a file, e.g. `./handling-STDs`, then try something like `echo text | ./handling-STDs 1 > ./file`, `./handling-STDs 1 < ./file`, etc...
 
 <details>
-    <summary>Click to see all cases, <b>./handling-STDs</b></summary>
-    ```bash
-    #!/bin/bash
-    
-    if [ "$1" = '1' ]; then
-    
-      echo -----------------------------
-      if [ -t 0 ]
-      then echo 'no input, it is the teminal'
-      else echo "there is a source of input"; fi
-      echo -----------------------------
-      if [ -t 1 ]
-      then echo 'STDOUT to the terminal'
-      else echo "STDOUT *NOT* to the terminal"; fi
-      echo -----------------------------
-      if [ -t 2 ]
-      then echo 'STDERR to the terminal'
-      else echo "STDERR *NOT* to the terminal"; fi
-      echo -----------------------------
-    
-    elif [ "$1" = '2' ]; then
-    
-      echo -----------------------------
-      [[ -t 0 ]] && \
-          echo 'STDIN is attached to TTY'
-      [[ -p /dev/stdin ]] && \
-          echo 'STDIN is attached to a pipe'
-      [[ ! -t 0 && ! -p /dev/stdin ]] && \
-          echo 'STDIN is attached to a redirection'
-      echo -----------------------------
-      [[ -t 1 ]] && \
-          echo 'STDOUT is attached to TTY'
-      [[ -p /dev/stdout ]] && \
-          echo 'STDOUT is attached to a pipe'
-      [[ ! -t 1 && ! -p /dev/stdout ]] && \
-          echo 'STDOUT is attached to a redirection'
-      echo -----------------------------
-      [[ -t 2 ]] && \
-          echo 'STDERR is attached to TTY'
-      [[ -p /dev/stderr ]] && \
-          echo 'STDERR is attached to a pipe'
-      [[ ! -t 2 && ! -p /dev/stderr ]] && \
-          echo 'STDERR is attached to a redirection'
-      echo -----------------------------
-    
-    fi
-    ```
+<summary>Click to see all cases, <b>./handling-STDs</b></summary>
+
+```bash
+#!/bin/bash
+
+if [ "$1" = '1' ]; then
+
+  echo -----------------------------
+  if [ -t 0 ]
+  then echo 'no input, it is the teminal'
+  else echo "there is a source of input"; fi
+  echo -----------------------------
+  if [ -t 1 ]
+  then echo 'STDOUT to the terminal'
+  else echo "STDOUT *NOT* to the terminal"; fi
+  echo -----------------------------
+  if [ -t 2 ]
+  then echo 'STDERR to the terminal'
+  else echo "STDERR *NOT* to the terminal"; fi
+  echo -----------------------------
+
+elif [ "$1" = '2' ]; then
+
+  echo -----------------------------
+  [[ -t 0 ]] && \
+      echo 'STDIN is attached to TTY'
+  [[ -p /dev/stdin ]] && \
+      echo 'STDIN is attached to a pipe'
+  [[ ! -t 0 && ! -p /dev/stdin ]] && \
+      echo 'STDIN is attached to a redirection'
+  echo -----------------------------
+  [[ -t 1 ]] && \
+      echo 'STDOUT is attached to TTY'
+  [[ -p /dev/stdout ]] && \
+      echo 'STDOUT is attached to a pipe'
+  [[ ! -t 1 && ! -p /dev/stdout ]] && \
+      echo 'STDOUT is attached to a redirection'
+  echo -----------------------------
+  [[ -t 2 ]] && \
+      echo 'STDERR is attached to TTY'
+  [[ -p /dev/stderr ]] && \
+      echo 'STDERR is attached to a pipe'
+  [[ ! -t 2 && ! -p /dev/stderr ]] && \
+      echo 'STDERR is attached to a redirection'
+  echo -----------------------------
+
+fi
+```
+
 </details>
 
 For example you can do something like this:
