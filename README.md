@@ -1,8 +1,8 @@
-## Bash Scripting, intro to bash
+# Bash Scripting, intro to bash
 
 You can consider this repository as a bash cheatsheet, I am focusing on the main points and basic syntax of the bash. There are also some urls and resources for deep diving.
 
-## Table of Content
+# Table of Content
 
 <!--ts-->
 
@@ -40,7 +40,7 @@ You can consider this repository as a bash cheatsheet, I am focusing on the main
 
 <!--te-->
 
-## Shebang
+# Shebang
 
 > This first line (#!/bin/bash or #!/bin/sh) has a name. It is known as ‘she-bang‘(shabang). This derives from the concatenation of the tokens sharp (#) and bang (!). It is also called as sh-bang, hashbang, poundbang or hash-pling
 
@@ -77,21 +77,21 @@ You can even run any command or program the will stdout the intrpreter:
 #!  eval "$(echo '/bin/bash')"
 ```
 
-## Variables
+# Variables
 
 `declare` expression: https://www.computerhope.com/unix/bash/declare.htm
 
 ### Spacial variables
 
-- $? : the exit code of the last performed command
-- \$$ : represents process id (pid)
-- $@ : all arguments
-- $# : arguments count
-- $0 : the program running this script
-- $1 : the first argument, or null
-- $LINENO : the line number where the \$LINENO is used
-- $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
-- $RANDOM : random integer in [0, 32767] (signed "+" 16-bit integer).
+- `$?` : the exit code of the last performed command
+- `\$$` : represents process id (pid)
+- `$@` : all arguments
+- `$#` : arguments count
+- `$0` : the program running this script
+- `$1` : the first argument, or null
+- `$LINENO` : the line number where the \$LINENO is used
+- `$RANDOM` : random integer in [0, 32767] (signed "+" 16-bit integer).
+- `$RANDOM` : random integer in [0, 32767] (signed "+" 16-bit integer).
 
 ### Varaible expansion
 
@@ -110,7 +110,7 @@ echo ${!var@}      # var var123
 echo ${!var123[@]} # 0 1 2 3
 ```
 
-## Operators
+# Operators
 
 Resources: [basic-operators-in-shell-scripting](https://www.geeksforgeeks.org/basic-operators-in-shell-scripting/)
 
@@ -143,7 +143,7 @@ You can find these operators by this command: `info test`.
 - `INTEGER1 \> INTEGER2`
 - `INTEGER1 \< INTEGER2`
 
-## Standard input and output, STDIN, STDOUT, STDERR
+# Standard input and output, STDIN, STDOUT, STDERR
 
 ### Chain commands, pipe
 
@@ -234,11 +234,11 @@ echo "-----------------------------------"
 echo "$my_content"
 ```
 
-## Different types of brackets in bash
+# Different types of brackets in bash
 
 https://stackoverflow.com/questions/6270440/simple-logical-operators-in-bash/6270803#6270803
 
-## If statement
+# If statement
 
 You can use these things with if statement
 
@@ -308,7 +308,7 @@ if test 0 -le 1; then echo true; else echo false; fi    # true
 
 > Exit status of `test`: **0** if the expression is true, **1** if the expression is false, **2** if an error occurred.
 
-## For loop
+# For loop
 
 - Loop over ranges of values
 
@@ -347,7 +347,7 @@ for (( i=0; i<=10; i++ )); do
 done
 ```
 
-## While & Until
+# While & Until
 
 You can you a logical or math expression:
 
@@ -369,7 +369,7 @@ Example:
 
 ![while loop](./while-image.png)
 
-## Case statement
+# Case statement
 
 This is an alternative to `if elif elif else fi`, it is similar to `switch` in C-like languages, JavaScript, and many more.
 
@@ -389,7 +389,7 @@ case $1 in
 esac
 ```
 
-## Select statement
+# Select statement
 
 To make the script user choose from a menu.
 
@@ -399,7 +399,7 @@ select user_choice in first_choice 2nd_choice 3rd_choice; do
 done
 ```
 
-## Useful commands
+# Useful commands
 
 You should take a look at these commands, you nearly will use them frequently.
 
@@ -449,10 +449,10 @@ memusage() {
 /usr/local/bin/node: symbolic link to /home/ms/.nvm/versions/node/v12.18.3/bin/node
 ```
 
-## Authentication from terminal
+# Authentication from terminal
 
 In the subdirectory `terminal-authentication`. You can find simple sign up and login scripts, the signed-up users are saved locally, but you can you the command `curl` to communicate with a remote or local server and save your data in a secure place.
 
-## License
+# License
 
 MIT
