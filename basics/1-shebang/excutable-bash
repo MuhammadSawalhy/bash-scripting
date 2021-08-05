@@ -1,0 +1,4 @@
+#!  eval "$(echo '/bin/bash')"
+
+echo "I'm bash :)"
+

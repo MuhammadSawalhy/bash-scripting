@@ -71,6 +71,12 @@ This is weird when you know that the shebang line can be included in python and 
 console.log('As-salamu alaykum from javascript!');
 ```
 
+You can even run any command or program the will stdout the intrpreter:
+
+```bash
+#!  eval "$(echo '/bin/bash')"
+```
+
 ## Variables
 
 `declare` expression: https://www.computerhope.com/unix/bash/declare.htm
