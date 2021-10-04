@@ -15,8 +15,12 @@ hideAddressBar: true
 editor:
     fontSize: 14
     theme: solarized_light
-    # keybinding: vim
+    keybinding: vim
+---
 
+# Bash scripting
+
+## It is just one of the shell languages
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&display=swap');
@@ -28,13 +32,6 @@ editor:
 .reveal .controls { color: #0a97b0; }
 .reveal .progress { color: #1b6ca8; }
 </style>
-
----
-
-# Bash scripting
-
-## It is just one of the shell languages
-
 ---
 
 # Historical background
