@@ -33,7 +33,7 @@ editor:
 
 # Bash scripting
 
-## It is just one of the sell languages
+## It is just one of the shell languages
 
 ---
 
@@ -43,4 +43,10 @@ editor:
 
 # Modules [Importing & Exporting]
 
-- https://www.baeldung.com/linux/bash-variables-export#relation-between-parent-shell-and-child-shells
+- [Relation Between Parent Shell and Child Shells](https://www.baeldung.com/linux/bash-variables-export#relation-between-parent-shell-and-child-shells)
+
+---
+
+# Sourcing another script
+
+- [What is the difference between executing a Bash script vs sourcing it?](https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it)
