@@ -10,8 +10,8 @@ You can consider this repository as a bash cheatsheet, I am focusing on the main
 - [Table of Content](#table-of-content)
 - [Shebang](#shebang)
 - [Variables](#variables)
-  - [Spacial variables](#spacial-variables)
-  - [Varaible expansion](#varaible-expansion)
+  - [Special variables](#special-variables)
+  - [Variable expansion](#variable-expansion)
 - [Operators](#operators)
   - [Arithmetic operations](#arithmetic-operations)
   - [Logic operators](#logic-operators)
@@ -81,7 +81,7 @@ You can even run any command or program the will stdout the intrpreter:
 
 `declare` expression: https://www.computerhope.com/unix/bash/declare.htm
 
-### Spacial variables
+### Special variables
 
 - `$?` : the exit code of the last performed command
 - `\$$` : represents process id (pid)
@@ -91,9 +91,8 @@ You can even run any command or program the will stdout the intrpreter:
 - `$1` : the first argument, or null
 - `$LINENO` : the line number where the \$LINENO is used
 - `$RANDOM` : random integer in [0, 32767] (signed "+" 16-bit integer).
-- `$RANDOM` : random integer in [0, 32767] (signed "+" 16-bit integer).
 
-### Varaible expansion
+### Variable expansion
 
 Useful resources:
 
@@ -289,7 +288,7 @@ Here is a question on stackoverflow: [Multiple logical operators, ((A || B) && C
 ```bash
 if (( math expressions ))
 	then echo "do command"
-elif [ consdition ]; then
+elif [ condition ]; then
 	echo "do command"
 fi
 ```
