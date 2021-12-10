@@ -237,7 +237,7 @@ echo "$my_content"
 
 # Different types of brackets in bash
 
-https://stackoverflow.com/questions/6270440/simple-logical-operators-in-bash/6270803#6270803
+See the amazing answers here: https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs
 
 # If statement
 
@@ -431,7 +431,7 @@ https://www.youtube.com/watch?v=jJ02kEETw70
 ### memory details, 'ps axch -o cmd,%mem'
 
 ```bash
-mem (){ free | awk '/^Mem/ { print $3/$2"%"}' }
+mem (){ free | awk '/^Mem/ { print $3/$2"%"}'; }
 memusage() {
   ps axch -o cmd,%mem --sort=-%mem |
   head -n $([ ! -z $1 ] && echo "$1" || echo 10)
