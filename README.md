@@ -241,9 +241,29 @@ See the amazing answers here: https://unix.stackexchange.com/questions/306111/wh
 
 # If statement
 
-You can use these things with if statement
+Let keep it simple, I will show you the "if statment" syntax and then explore different commonly used if examples.
 
-### Tests and logic expressions, `info test` or `man test`.
+```bash
+if
+   command-list1
+then
+   command-list2
+else
+   command-list3
+fi
+```
+
+## Any command as a condition
+
+We can use a command, chained command with `&&` abd `||`, or multiple lines as if you are writing in a separate file until a `then` command is found.
+
+If will say the **command-list1** is true if the exit code of the whole list is 0, a sign of success, in other words if the last command exits with 0, if it is other than a zero it will be false...
+
+Here are some examples of these command that you will regularly with...
+
+### `test condition` and `[ condition ]`
+
+Some arguments that you can use:
 
 ```
 Operator			Description
@@ -263,9 +283,55 @@ INTEGER1 -lt INTEGER2		INTEGER1 is numerically less than INTEGER2
 -x FILE				FILE exists and the execute permission is granted.
 ```
 
----
+-----
 
-Use them with `if` in this way:
+Another important idea to know is that `[ condition ]` is the exact same as `test condition`, it is just a different way to write the command as standarized by POSIX according, [here is the source](https://unix.stackexchange.com/a/306115).
+
+A quote from [this answer](https://unix.stackexchange.com/a/290296) says:
+
+> So when you write
+>
+> ```bash
+> [ [ "$A" -eq "0" ] || [ "$B" -ne "0" ] ] && [ "$C" -eq "0" ]
+> ```
+>
+> that's parsed as
+>
+> ```bash
+> [ [ "$A" -eq "0" ] ||
+> [ "$B" -ne "0" ] ] &&
+> [ "$C" -eq "0" ]
+> ```
+>
+> which is the same as
+>
+> ```bash
+> test [ "$A" -eq "0" ||
+> test "$B" -ne "0" ] &&
+> test "$C" -eq "0"
+> ```
+>
+> Notice the unbalanced brackets? Yeah, that's not good. Your attempt with parentheses has the same problem: spurious brackets.
+
+
+### Math expressions
+
+```bash
+if (( math expressions )); then
+    echo "do command"
+fi
+```
+
+
+### Subshell
+
+```bash
+if (PATH=""; true); then
+    echo "do command"
+fi
+```
+
+## Advanced examples
 
 ```bash
 if [ condition ]; then ...; fi
@@ -279,35 +345,22 @@ if [[ 1 > 2 && (... || ... && ...) ]]; then ...; fi
 if [[ "$foo" = a* ]]; then ...; fi # checks patterns
 ```
 
----
-
-Here is a question on stackoverflow: [Multiple logical operators, ((A || B) && C), and “syntax error near unexpected token"](https://unix.stackexchange.com/questions/290146/multiple-logical-operators-a-b-c-and-syntax-error-near-unexpected-t).
-
-### Math expressions
+See the awesomeness here:
 
 ```bash
-if (( math expressions ))
-	then echo "do command"
-elif [ condition ]; then
-	echo "do command"
-fi
+╭─muhammad-alsawalhy@arch.zsh ‹main›
+╰─➤ if a
+if> b
+if> true
+if> then
+then> echo it is true
+then> else
+else> echo it is false
+else> fi
+zsh: command not found: a
+zsh: command not found: b
+it is true
 ```
-
-### command
-
-Actually, we can consider logic expressions `[ ... ]` and math epxressions as commands, when the command exits with 0 "succeeded", the condition is satisfied, if it exits with any thing else "failed", if will proceed to `else` and `elif` if founded.
-
-```bash
-if (( 0 )); then echo true; else echo false; fi         # false
-if [ 0 ]; then echo true; else echo false; fi           # true
-if [ ]; then echo true; else echo false; fi             # false
-test 0 -leq 1; echo $?                                  # 2
-if test 0 -leq 1; then echo true; else echo false; fi   # false
-test 0 -le 1; echo $?                                   # 0
-if test 0 -le 1; then echo true; else echo false; fi    # true
-```
-
-> Exit status of `test`: **0** if the expression is true, **1** if the expression is false, **2** if an error occurred.
 
 # For loop
 
