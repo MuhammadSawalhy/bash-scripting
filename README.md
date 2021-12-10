@@ -143,102 +143,13 @@ You can find these operators by this command: `info test`.
 - `INTEGER1 \> INTEGER2`
 - `INTEGER1 \< INTEGER2`
 
-# Standard input and output, STDIN, STDOUT, STDERR
-
-### Chain commands, pipe
-
-```bash
-command='echo text | cat | sed s/text/another\ text/'
-eval $command
-```
-
-### Redirect from a channel to another
-
-```bash
-eval $command > file       # redirect STDOUT --to--> ./file
-eval $command >&2          # redirect STDOUT --to--> STDERR
-eval $command 1>&2         # redirect STDOUT --to--> STDERR
-eval $command >&2 > ./file # redirect STDOUT --to--> both STDERR and ./file
-eval $command 2> /dev/null # redirect STDERR --to--> /dev/null
-eval $command >& /dev/null # redirect both STDOUT and STDERR --to--> /dev/null
-```
-
-### Piping and redirecting with your own script file
-
-Some valuable answers to a question on stackoverflow, [How to detect if my shell script is running through a pipe?](https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe).
-
-You can put the following code in a file, e.g. `./handling-STDs`, then try something like `echo text | ./handling-STDs 1 > ./file`, `./handling-STDs 1 < ./file`, etc...
-
-<details>
-<summary>Click to see all cases, <b>./handling-STDs</b></summary>
-
-```bash
-#!/bin/bash
-
-if [ "$1" = '1' ]; then
-
-  echo -----------------------------
-  if [ -t 0 ]
-  then echo 'no input, it is the teminal'
-  else echo "there is a source of input"; fi
-  echo -----------------------------
-  if [ -t 1 ]
-  then echo 'STDOUT to the terminal'
-  else echo "STDOUT *NOT* to the terminal"; fi
-  echo -----------------------------
-  if [ -t 2 ]
-  then echo 'STDERR to the terminal'
-  else echo "STDERR *NOT* to the terminal"; fi
-  echo -----------------------------
-
-elif [ "$1" = '2' ]; then
-
-  echo -----------------------------
-  [[ -t 0 ]] && \
-      echo 'STDIN is attached to TTY'
-  [[ -p /dev/stdin ]] && \
-      echo 'STDIN is attached to a pipe'
-  [[ ! -t 0 && ! -p /dev/stdin ]] && \
-      echo 'STDIN is attached to a redirection'
-  echo -----------------------------
-  [[ -t 1 ]] && \
-      echo 'STDOUT is attached to TTY'
-  [[ -p /dev/stdout ]] && \
-      echo 'STDOUT is attached to a pipe'
-  [[ ! -t 1 && ! -p /dev/stdout ]] && \
-      echo 'STDOUT is attached to a redirection'
-  echo -----------------------------
-  [[ -t 2 ]] && \
-      echo 'STDERR is attached to TTY'
-  [[ -p /dev/stderr ]] && \
-      echo 'STDERR is attached to a pipe'
-  [[ ! -t 2 && ! -p /dev/stderr ]] && \
-      echo 'STDERR is attached to a redirection'
-  echo -----------------------------
-
-fi
-```
-
-</details>
-
-For example you can do something like this:
-
-```bash
-#!/usr/bin/env bash
-if [ -t 0 ]; then
-  >&2 echo error: no input is provided, STDIN channel is attached to the tty, your terminal
-  exit 1
-fi
-
-my_content="$(cat)"
-echo "I received some data:"
-echo "-----------------------------------"
-echo "$my_content"
-```
-
 # Different types of brackets in bash
 
-See the amazing answers here: https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs
+See the amazing answers here: [What is the difference between the Bash operators \[\[ vs \[ vs ( vs ((?](https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs)
+
+# Play with quotations: `"` and `'`
+
+[What is the difference between the "...", '...', $'...', and $"..." quotes in the shell?](https://unix.stackexchange.com/questions/503013/what-is-the-difference-between-the-and-quotes-in-th?rq=1)
 
 # If statement
 
@@ -253,8 +164,6 @@ else
    command-list3
 fi
 ```
-
-## Any command as a condition
 
 We can use a command, chained command with `&&` abd `||`, or multiple lines as if you are writing in a separate file until a `then` command is found.
 
@@ -332,7 +241,7 @@ if (PATH=""; true); then
 fi
 ```
 
-## Advanced examples
+### Advanced examples
 
 ```bash
 if [ condition ]; then ...; fi
@@ -454,59 +363,103 @@ select user_choice in first_choice 2nd_choice 3rd_choice; do
 done
 ```
 
-# Useful commands
 
-You should take a look at these commands, you nearly will use them frequently.
+# Standard input and output, STDIN, STDOUT, STDERR
 
-> cal, date, awk, grep, sed, tee, tr, printf, expr, test, sensors, free, ps, pgrep, pkill, curl, wget, xclip, youtube-dl
-
-### `cal, data`
+### Chain commands, pipe
 
 ```bash
-~/Desktop/linux-meeting/terminal-authentication
-❯ cal
-September 2020
-Su Mo Tu We Th Fr Sa
-1  2  3  4  5
-6  7  8  9 10 11 12
-13 14 15 16 17 18 19
-20 21 22 23 24 25 26
-27 28 29 30
-
-~/Desktop/linux-meeting/terminal-authentication
-❯ date "+%Y %b %d (%a) - %I:%M%p"
-2020 Sep 27 (Sun) - 12:02AM
+command='echo text | cat | sed s/text/another\ text/'
+eval $command
 ```
 
-### `awk`
-
-https://www.youtube.com/watch?v=jJ02kEETw70
-
-### memory details, 'ps axch -o cmd,%mem'
+### Redirect from a channel to another
 
 ```bash
-mem (){ free | awk '/^Mem/ { print $3/$2"%"}'; }
-memusage() {
-  ps axch -o cmd,%mem --sort=-%mem |
-  head -n $([ ! -z $1 ] && echo "$1" || echo 10)
-}
+eval $command > file       # redirect STDOUT --to--> ./file
+eval $command >&2          # redirect STDOUT --to--> STDERR
+eval $command 1>&2         # redirect STDOUT --to--> STDERR
+eval $command >&2 > ./file # redirect STDOUT --to--> both STDERR and ./file
+eval $command 2> /dev/null # redirect STDERR --to--> /dev/null
+eval $command >& /dev/null # redirect both STDOUT and STDERR --to--> /dev/null
 ```
 
-### `ln`, to create a symbolic links
+### Piping and redirecting with your own script file
+
+Some valuable answers to a question on stackoverflow, [How to detect if my shell script is running through a pipe?](https://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe).
+
+You can put the following code in a file, e.g. `./handling-STDs`, then try something like `echo text | ./handling-STDs 1 > ./file`, `./handling-STDs 1 < ./file`, etc...
+
+<details>
+<summary>Click to see all cases, <b>./handling-STDs</b></summary>
 
 ```bash
-❯ sudo ln -s  file_to_be_linked  the_symbolic_link_file
+#!/bin/bash
 
-#### for example ###########
-❯ sudo ln -fs /home/ms/.nvm/versions/node/v12.18.3/bin/node /usr/local/bin/node
+if [ "$1" = '1' ]; then
 
-❯ file /usr/local/bin/node
-/usr/local/bin/node: symbolic link to /home/ms/.nvm/versions/node/v12.18.3/bin/node
+  echo -----------------------------
+  if [ -t 0 ]
+  then echo 'no input, it is the teminal'
+  else echo "there is a source of input"; fi
+  echo -----------------------------
+  if [ -t 1 ]
+  then echo 'STDOUT to the terminal'
+  else echo "STDOUT *NOT* to the terminal"; fi
+  echo -----------------------------
+  if [ -t 2 ]
+  then echo 'STDERR to the terminal'
+  else echo "STDERR *NOT* to the terminal"; fi
+  echo -----------------------------
+
+elif [ "$1" = '2' ]; then
+
+  echo -----------------------------
+  [[ -t 0 ]] && \
+      echo 'STDIN is attached to TTY'
+  [[ -p /dev/stdin ]] && \
+      echo 'STDIN is attached to a pipe'
+  [[ ! -t 0 && ! -p /dev/stdin ]] && \
+      echo 'STDIN is attached to a redirection'
+  echo -----------------------------
+  [[ -t 1 ]] && \
+      echo 'STDOUT is attached to TTY'
+  [[ -p /dev/stdout ]] && \
+      echo 'STDOUT is attached to a pipe'
+  [[ ! -t 1 && ! -p /dev/stdout ]] && \
+      echo 'STDOUT is attached to a redirection'
+  echo -----------------------------
+  [[ -t 2 ]] && \
+      echo 'STDERR is attached to TTY'
+  [[ -p /dev/stderr ]] && \
+      echo 'STDERR is attached to a pipe'
+  [[ ! -t 2 && ! -p /dev/stderr ]] && \
+      echo 'STDERR is attached to a redirection'
+  echo -----------------------------
+
+fi
 ```
 
-# Authentication from terminal
+</details>
 
-In the subdirectory `terminal-authentication`. You can find simple sign up and login scripts, the signed-up users are saved locally, but you can you the command `curl` to communicate with a remote or local server and save your data in a secure place.
+For example you can do something like this:
+
+```bash
+#!/usr/bin/env bash
+if [ -t 0 ]; then
+  >&2 echo error: no input is provided, STDIN channel is attached to the tty, your terminal
+  exit 1
+fi
+
+my_content="$(cat)"
+echo "I received some data:"
+echo "-----------------------------------"
+echo "$my_content"
+```
+
+# Real world examples
+
+Check [my own scripts](https://github.com/MuhammadSawalhy/my-config/tree/master/linux/bin) that made my life easier
 
 # License
 
