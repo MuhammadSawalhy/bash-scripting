@@ -452,6 +452,12 @@ echo "-----------------------------------"
 echo "$my_content"
 ```
 
+# Tricks you will need
+
+- [Monitoring a file until a string is found](https://superuser.com/questions/270529/monitoring-a-file-until-a-string-is-found)
+- [Read lines into array](https://unix.stackexchange.com/a/485262/421240)
+  - To list files and store them into array to deal with them later
+
 # Real world examples
 
 Check [my own scripts](https://github.com/MuhammadSawalhy/my-config/tree/master/linux/bin) that made my life easier
