@@ -457,6 +457,7 @@ echo "$my_content"
 - [Monitoring a file until a string is found](https://superuser.com/questions/270529/monitoring-a-file-until-a-string-is-found)
 - [Read lines into array](https://unix.stackexchange.com/a/485262/421240)
   - To list files and store them into array to deal with them later
+- [Replace one substring for another string in shell script](https://stackoverflow.com/a/13210909/10891757)
 
 # Real world examples
 
