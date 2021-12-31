@@ -458,6 +458,11 @@ echo "$my_content"
 - [Read lines into array](https://unix.stackexchange.com/a/485262/421240)
   - To list files and store them into array to deal with them later
 - [Replace one substring for another string in shell script](https://stackoverflow.com/a/13210909/10891757)
+- Manipulate an array
+  - **_Take a look at my [examples of arrays](https://github.com/MuhammadSawalhy/bash-scripting/tree/master/examples/arrays)_**
+  - [Remove last item of an array](https://unix.stackexchange.com/a/611717/421240)
+  - [Remove last positional argument](https://stackoverflow.com/a/26163980/10891757)
+  - [Remove an item by its value](https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array)
 
 # Real world examples
 
