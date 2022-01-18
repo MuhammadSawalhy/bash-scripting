@@ -465,7 +465,6 @@ echo "$my_content"
   - [Remove an item by its value](https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array)
   - [How can I join elements of an array in Bash?](https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash)
 - [Handle wildcards matching no file in bash](https://unix.stackexchange.com/questions/216222/handle-wildcards-matching-no-file-in-bash)
-- [Handle wildcards matching no file in bash](https://unix.stackexchange.com/questions/216222/handle-wildcards-matching-no-file-in-bash)
 
 # Real world examples
 
