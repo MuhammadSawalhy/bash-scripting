@@ -455,16 +455,19 @@ echo "$my_content"
 # Tricks you will need
 
 - [Monitoring a file until a string is found](https://superuser.com/questions/270529/monitoring-a-file-until-a-string-is-found)
-- [Read lines into array](https://unix.stackexchange.com/a/485262/421240)
-  - To list files and store them into array to deal with them later
-- [Replace one substring for another string in shell script](https://stackoverflow.com/a/13210909/10891757)
+- Manipulate a string
+  - [Replace one substring for another string in shell script](https://stackoverflow.com/a/13210909/10891757)
 - Manipulate an array
   - **_Take a look at my [examples of arrays](https://github.com/MuhammadSawalhy/bash-scripting/tree/master/examples/arrays)_**
+  - [Read lines into array](https://unix.stackexchange.com/a/485262/421240)
   - [Remove last item of an array](https://unix.stackexchange.com/a/611717/421240)
   - [Remove last positional argument](https://stackoverflow.com/a/26163980/10891757)
   - [Remove an item by its value](https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array)
   - [How can I join elements of an array in Bash?](https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash)
 - [Handle wildcards matching no file in bash](https://unix.stackexchange.com/questions/216222/handle-wildcards-matching-no-file-in-bash)
+- Delete positional arguments (from the argv):
+  - `set -- "${@:1:2}" "${@:4:8}" # delete the 3rd argument`
+  - `argv=("$@"); unset argv[2]; set -- "${argv[@]}"`
 
 # Real world examples
 
