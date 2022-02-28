@@ -464,10 +464,11 @@ echo "$my_content"
   - [Remove last positional argument](https://stackoverflow.com/a/26163980/10891757)
   - [Remove an item by its value](https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array)
   - [How can I join elements of an array in Bash?](https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash)
+  - Delete positional arguments (from the argv):
+    - `set -- "${@:1:2}" "${@:4:8}" # delete the 3rd argument`
+    - `argv=("$@"); unset 'argv[2]'; set -- "${argv[@]}"`
+
 - [Handle wildcards matching no file in bash](https://unix.stackexchange.com/questions/216222/handle-wildcards-matching-no-file-in-bash)
-- Delete positional arguments (from the argv):
-  - `set -- "${@:1:2}" "${@:4:8}" # delete the 3rd argument`
-  - `argv=("$@"); unset argv[2]; set -- "${argv[@]}"`
 
 # Real world examples
 
